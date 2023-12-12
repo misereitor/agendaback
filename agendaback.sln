@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34316.72
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "agendaback", "agendaback\agendaback.csproj", "{DB2B9A79-0F26-4715-B199-83FAB348F59B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DB2B9A79-0F26-4715-B199-83FAB348F59B}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{DB2B9A79-0F26-4715-B199-83FAB348F59B}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{DB2B9A79-0F26-4715-B199-83FAB348F59B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB2B9A79-0F26-4715-B199-83FAB348F59B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {690B143E-C3BD-416A-A6FD-B177850B0E36}
+	EndGlobalSection
+EndGlobal
