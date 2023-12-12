@@ -19,10 +19,4 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Repository\Agenda\" />
-    <Folder Include="Repository\GLPITI\" />
-    <Folder Include="Repository\GLPISistemas\" />
-  </ItemGroup>
-
 </Project>

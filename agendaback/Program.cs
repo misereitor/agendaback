@@ -21,10 +21,19 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.WebHost.ConfigureKestrel((context, serverOptions) =>
+{
+    serverOptions.ListenAnyIP(5000);
+});
 
-var connectionDBAgenda = builder.Configuration.GetConnectionString("DatabaseAgenda");
-var connectionDBGLPI = builder.Configuration.GetConnectionString("DatabaseGLPISuporteTI");
-var connectionDBGLPISistemas = builder.Configuration.GetConnectionString("DatabaseGLPISuporteSistemas");
+//database
+var connectionDBAgenda = "Server=192.168.1.6;user ID=agenda;Password=VIVER@tec#10;Database=agenda";
+//var connectionDBAgenda = "Server=192.168.1.6;user ID=agenda;Password=VIVER@tec#10;Database=agenda_homologacao"; 
+var connectionDBGLPI = "Server=192.168.1.6;user ID=agenda;Password=VIVER@tec#10;Database=glpi_suporteti";
+var connectionDBGLPISistemas = "Server=192.168.1.6;user ID=agenda;Password=VIVER@tec#10;Database=glpi_suportedesistemas";
+//var connectionDBAgenda = builder.Configuration.GetConnectionString("DatabaseAgenda");
+//var connectionDBGLPI = builder.Configuration.GetConnectionString("DatabaseGLPISuporteTI");
+//var connectionDBGLPISistemas = builder.Configuration.GetConnectionString("DatabaseGLPISuporteSistemas");
 
 
 builder.Services.AddDbContext<ContextDBAgenda>(options =>

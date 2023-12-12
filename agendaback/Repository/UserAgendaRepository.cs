@@ -19,6 +19,23 @@ namespace agendaback.Repository
         private readonly ContextDBAgenda _contextDBAgenda = contextDBAgenda;
         private readonly PasswordValidator _passwordValidator = validationRules;
 
+        public async Task<bool> ActiveUser(int id)
+        {
+            UserAgenda userAgenda = await GetUserAgenda(id);
+            userAgenda.Active = !userAgenda.Active;
+            try
+            {
+                _contextDBAgenda.UserAgenda.Update(userAgenda);
+                await _contextDBAgenda.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new ErrosException(500, ex.Message);
+            }
+            return userAgenda.Active;
+
+        }
+
         public async Task<bool> AlterPassword(int id, PasswordModel password)
         {
             UserAgenda userAgenda = await GetUserAgenda(id);
@@ -109,6 +126,36 @@ namespace agendaback.Repository
             }
             usersResponse = ObjectMapper.Map<UserAgenda, UserResponse>(userAgenda);
             return usersResponse;
+        }
+
+        public async Task<bool> EditUserAgendaGLPI(GLPIRequest userAgenda)
+        {
+            UserAgenda user = await GetUserAgenda(userAgenda.IdUser);
+            UserAgenda? UserWithIdGLPI = await _contextDBAgenda.UserAgenda.FirstOrDefaultAsync(u =>
+                u.IdGLPITI == userAgenda.IdGLPITI || u.IdGLPISistemas == userAgenda.IdGLPISistemas);
+            if (UserWithIdGLPI != null)
+            {
+                throw new ErrosException(403, "Esse ID pertence a outro usuário!");
+            }
+            if (userAgenda.IdGLPITI > 0)
+            {
+
+                user.IdGLPITI = userAgenda.IdGLPITI;
+            }
+            if (userAgenda.IdGLPISistemas > 0)
+            {
+                user.IdGLPISistemas = userAgenda.IdGLPISistemas;
+            }
+            try
+            {
+                _contextDBAgenda.UserAgenda.Update(user);
+                await _contextDBAgenda.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new ErrosException(500, ex.Message);
+            }
+            return true;
         }
 
         public async Task<List<UserResponse>> GetAllUserAgenda()

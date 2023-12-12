@@ -13,8 +13,10 @@ namespace agendaback.Model.Response
         [DefaultValue(0)]
         public string Roles { get; set; }
         public int IdGLPISistemas { get; set; }
+        public bool Active { get; set; }
 
-        public UserResponse(int id, int idGLPI, string userName, string firstName, string lastName, string email, string roles, int idGLPISistemas)
+
+        public UserResponse(int id, int idGLPI, string userName, string firstName, string lastName, string email, string roles, int idGLPISistemas, bool active)
         {
             Id = id;
             IdGLPITI = idGLPI;
@@ -24,6 +26,7 @@ namespace agendaback.Model.Response
             Email = email;
             Roles = roles;
             IdGLPISistemas = idGLPISistemas;
+            Active = active;
         }
 
         public UserResponse()

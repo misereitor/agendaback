@@ -46,6 +46,14 @@ namespace agendaback.Controllers
             throw new ErrosException(400, "Usuario não tem permissão para realizar essa ação!");
         }
 
+        [HttpPut("edituser")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<ActionResult<bool>> EditUserAgendaglpi(GLPIRequest userAgenda)
+        {
+            await _userAgendaRepository.EditUserAgendaGLPI(userAgenda);
+            return Ok();
+        }
+
         [HttpPut("alterpassword/{id}")]
         [Authorize]
         public async Task<ActionResult<bool>> AlterPassword(int id, PasswordModel password)
@@ -65,6 +73,14 @@ namespace agendaback.Controllers
         {
             bool deleted = await _userAgendaRepository.EditRolesUserAgenda(id, roles);
             return Ok(deleted);
+        }
+
+        [HttpPut("activeuser/{id}")]
+        [Authorize(Roles = "Administrator")]
+        public async Task<ActionResult<bool>> ActiveUser(int id)
+        {
+            bool active = await _userAgendaRepository.ActiveUser(id);
+            return Ok(active);
         }
 
         [HttpDelete("deliteuser/{id}")]
